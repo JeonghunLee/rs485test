@@ -11,9 +11,10 @@
 #define RS485_RX 2
 
 /* 
-	Simple 485 Test program 
+	RS232 -> RS485 -> RS232
+	RS-485/232 Test program 
 
-you need to control gpio on/off before using this application 
+	control gpio on/off by using RS485
 	Jeonghun, Lee 
 
 */ 
@@ -38,8 +39,7 @@ void RS485_TEST(int sel,int val)
 	settio.c_oflag = 0;
 	settio.c_lflag = 0;
 
-//http://database.sarang.net/study/glibc/12.htm
-//http://girm.tistory.com/98
+
 	settio.c_cc[VTIME] = 10; /* Minimum number of characters for noncanonical read (MIN). for read buffer   */
 	settio.c_cc[VMIN] = 1;   /* Timeout in deciseconds for noncanonical read (TIME). ,   for read timeout  */
 
@@ -90,7 +90,7 @@ int main(int argc, char* argv[])
 		exit(1);
 	}
 
-	val = atoi(argv[2]);
+	val = atoi(argv[2]); //rs485 argument 
 	
 	printf("main start!! %s %s %s (val=%d) \n",argv[0],argv[1],argv[2],val);
 	
